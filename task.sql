@@ -1,4 +1,4 @@
-create table task 
+create table task
 (
 task_id number,
 task_name varchar2(50) not null,
