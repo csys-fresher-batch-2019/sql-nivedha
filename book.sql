@@ -35,5 +35,8 @@ insert into orders(order_id,user_name,book_id,total_amt,qty,status,comments) val
 select * from orders;
 select * from book inner join orders on book.book_id=orders.book_id;
 select * from book left join orders on book.book_id=orders.book_id;
-select * from book right join orders on book.book_id=orders.book_id;
+select * from orders right join book on book.book_id=orders.book_id;
 drop table orders;
+                            
+
+                            
