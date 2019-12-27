@@ -70,6 +70,19 @@ create table order_item
                            insert into order_item(item_id,order_id,book_id,quantity,status) values (102,2,4,5,'cancelled');
 select * from order_item;
 drop table order_item;
+                                                         
+                                                         
+create table orderr
+(
+order_id number,user_name varchar2(30) not null,
+tot_amt number not null,order_date timestamp default systimestamp,
+deliver_date timestamp default systimestamp,status varchar2(30),
+constraint orderr_id_pk primary key(order_id),
+constraint total_amt_ck check(tot_amt>=1),
+constraint statuss_ck check(status in('ordered','cancelled'))
+);
+insert into orderr
+(order_id,user_name,tot_amt,status) values (1,'nivedha',3456,'ordered');
 
                             
 
