@@ -17,7 +17,7 @@ drop table book;
 create table orders
 (
 order_id number,user_name varchar2(30) not null,book_id number not null,ordered_date timestamp default systimestamp not null,
-delivered_date timestamp default systimestamp not null,
+delivered_date date not null,
 total_amt number not null,qty number not null,status varchar2(30)not null,comments varchar2(500) not null,
 constraint order_id_pk primary key(order_id),
 constraint book_id_fk foreign key(book_id) references book(book_id),
@@ -26,12 +26,12 @@ constraint qty_ck check(qty>=1),
 constraint status_ck check (status in ('delivered','cancel','shipping','not available')),
 constraint order_id_uq unique(user_name,book_id,ordered_date)
 );
+insert into orders(order_id,user_name,book_id,delivered_date,total_amt,qty,status,comments) values 
+(1,'nivedha',1,to_date ('12-26-2019','mm-dd-yyyy'),500,2,'delivered','no comments');
 insert into orders(order_id,user_name,book_id,total_amt,qty,status,comments) values 
-(1,'nivedha',1,500,2,'delivered','no comments');
+(2,'sujitha',2,to_date ('02-25-2019','mm-dd-yyyy'),900,5,'cancel','good');
 insert into orders(order_id,user_name,book_id,total_amt,qty,status,comments) values 
-(2,'sujitha',2,900,5,'cancel','good');
-insert into orders(order_id,user_name,book_id,total_amt,qty,status,comments) values 
-(3,'kavitha',3,560,3,'cancel','comments');
+(3,'kavitha',3,to_date ('03-14-2019','mm-dd-yyyy'),560,3,'cancel','comments');
 select * from orders;
 select * from book inner join orders on book.book_id=orders.book_id;
 select * from book left join orders on book.book_id=orders.book_id;
