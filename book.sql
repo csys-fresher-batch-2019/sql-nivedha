@@ -29,4 +29,6 @@ insert into orders(order_id,user_name,book_id,total_amt,qty,status,comments) val
 insert into orders(order_id,user_name,book_id,total_amt,qty,status,comments) values 
 (2,'sujitha',2,900,5,'cancel','good');
 select * from orders;
+select * from book inner join orders on book.book_id=orders.book_id;
+select * from book left join orders on book.book_id=orders.book_id;
 drop table orders;
