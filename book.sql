@@ -47,6 +47,18 @@ drop table orders;
                               );
                         insert into books(books_id,books_title,books_price) values (1,'jdk',390);
                             insert into books(books_id,books_title,books_price) values (2,'java',499);
+                            select * from books;
+
+ create table books_stock
+                            (
+                              stock_id number,books_id number not null,quantity number,
+                              constraint stock_id_pk primary key(stock_id),
+                              constraint quantity_ck check(quantity>=1)
+                              );
+                        insert into books_stock(stock_id,books_id,quantity) values (1,1,3);
+                            insert into books_stock(stock_id,books_id,quantity) values (2,3,4);
+select * from books_stock;
+
                             
 
                             
