@@ -58,6 +58,17 @@ drop table orders;
                         insert into books_stock(stock_id,books_id,quantity) values (1,1,3);
                             insert into books_stock(stock_id,books_id,quantity) values (2,3,4);
 select * from books_stock;
+                            
+create table order_item
+                            (
+                              item_id number,order_id number not null,book_id number not null,quantity number not null,status varchar2(30)
+                              constraint item_id_pk primary key(item_id),
+                              constraint quantity_ck check(quantity>=1),
+                              constraint status_ck check(status in('ordered','cancelled')
+                              );
+                           insert into order_item(item_id,order_id,book_id,quantity,status) values (101,1,3,4,'ordered');
+                           insert into order_item(item_id,order_id,book_id,quantity,status) values (102,2,4,5,'canceled');
+select * from order_item;
 
                             
 
