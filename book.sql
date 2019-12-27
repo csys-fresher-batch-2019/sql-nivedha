@@ -9,7 +9,9 @@ constraint active_ck check (active in (0,1))
 );
 insert into book(book_id,book_name,author_name,price,publisher,version,category,active) values (1,'java','bala',500,'millinium',2,'technical',1);
 insert into book(book_id,book_name,author_name,price,publisher,version,category,active) values (2,'oracle','sundar',600,'millinium',1,'technicaldb',0);
-select * from book;
+insert into book(book_id,book_name,author_name,price,publisher,version,category,active) values (3,'javanetbeans','bala',550,'millinium',5,'tech',1);
+insert into book(book_id,book_name,author_name,price,publisher,version,category,active) values (4,'oracledb','sundarpitchai',699,'millinium',3,'nontechnical',0);
+                            select * from book;
 drop table book;
 
 create table orders
@@ -28,7 +30,10 @@ insert into orders(order_id,user_name,book_id,total_amt,qty,status,comments) val
 (1,'nivedha',1,500,2,'delivered','no comments');
 insert into orders(order_id,user_name,book_id,total_amt,qty,status,comments) values 
 (2,'sujitha',2,900,5,'cancel','good');
+insert into orders(order_id,user_name,book_id,total_amt,qty,status,comments) values 
+(3,'kavitha',3,560,3,'cancel','comments');
 select * from orders;
 select * from book inner join orders on book.book_id=orders.book_id;
 select * from book left join orders on book.book_id=orders.book_id;
+select * from book right join orders on book.book_id=orders.book_id;
 drop table orders;
