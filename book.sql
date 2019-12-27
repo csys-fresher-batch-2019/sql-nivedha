@@ -7,10 +7,10 @@ constraint price_ck check (price>=0),
 constraint book_id_uq unique(book_id,book_name,author_name,version),
 constraint active_ck check (active in (0,1))
 );
-insert into book(book_id,book_name,author_name,price,publisher,version,category,active) values (1,'java','bala',500,'millinium',2,'technical',1);
+insert into book(book_id,book_name,author_name,price,publisher,version,category,active) values (1,'java','bala',500,'xxxx',2,'technical',1);
 insert into book(book_id,book_name,author_name,price,publisher,version,category,active) values (2,'oracle','sundar',600,'millinium',1,'technicaldb',0);
-insert into book(book_id,book_name,author_name,price,publisher,version,category,active) values (3,'javanetbeans','bala',550,'millinium',5,'tech',1);
-insert into book(book_id,book_name,author_name,price,publisher,version,category,active) values (4,'oracledb','sundarpitchai',699,'millinium',3,'nontechnical',0);
+insert into book(book_id,book_name,author_name,price,publisher,version,category,active) values (3,'javanetbeans','bala',550,'yyyy',5,'tech',1);
+insert into book(book_id,book_name,author_name,price,publisher,version,category,active) values (4,'oracledb','sundarpitchai',699,'zzzz',3,'nontechnical',0);
                             select * from book;
 drop table book;
 
