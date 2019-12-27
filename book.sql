@@ -39,5 +39,14 @@ select * from orders right join book on book.book_id=orders.book_id;
 select * from orders full outer join book on book.book_id=orders.book_id;
 drop table orders;
                             
+                            create table books
+                            (
+                              books_id number,books_title varchar2(30) not null,books_price number,
+                              constraint books_id_pk primary key(books_id),
+                              constraint books_price_ck check(books_price>=0)
+                              );
+                        insert into books(books_id,books_title,books_price) values (1,'jdk',390);
+                            insert into books(books_id,books_title,books_price) values (2,'java',499);
+                            
 
                             
