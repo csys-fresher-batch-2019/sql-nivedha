@@ -83,6 +83,9 @@ constraint statuss_ck check(status in('ordered','cancelled'))
 );
 insert into orderr
 (order_id,user_name,tot_amt,status) values (1,'nivedha',3456,'ordered');
+select * from order_item;
+drop table order_item;
+select quantity from books_stock where books_id=3;
 
                             
 
