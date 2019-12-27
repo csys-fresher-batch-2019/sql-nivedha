@@ -86,6 +86,7 @@ insert into orderr
 select * from order_item;
 drop table order_item;
 select quantity from books_stock where books_id=3;
+select book_name,(select sum(quantity) from order_item where book_id=b.book_id)from book b;
 
                             
 
