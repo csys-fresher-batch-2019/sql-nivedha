@@ -13,24 +13,26 @@ create table course
 (
 course_id number,
 course_name varchar2(100) not null,
-course_duration varchar2(100)not null,
+course_duration number not null,
 course_fees number not null,
 constraint course_id_pk primary key(course_id),
+constraint course_name_uq unique(course_name),
+
 constraint course_fees_ck check(course_fees>0)
 );
 create sequence course_id_seq start with 1001 increment by 4;
 ```
-```sql
 Insert Query:
-insert into course(course_id,course_name,course_duration,course_fees) 
-values (course_id_seq.nextval,'java','1 year',50000);
-insert into course(course_id,course_name,course_duration,course_fees) 
-values (course_id_seq.nextval,'.net','6 months',25000);
-insert into course(course_id,course_name,course_duration,course_fees) 
-values (course_id_seq.nextval,'oracle','1 year',50000);
-```
 ```sql
-Query
+insert into course(course_id,course_name,course_duration,course_fees) 
+values (course_id_seq.nextval,'java','6',50000);
+insert into course(course_id,course_name,course_duration,course_fees) 
+values (course_id_seq.nextval,'.net','3',25000);
+insert into course(course_id,course_name,course_duration,course_fees) 
+values (course_id_seq.nextval,'oracle','6',50000);
+```
+Query:
+```sql
 select * from course;
 drop table course;
 drop sequence course_id_seq;
