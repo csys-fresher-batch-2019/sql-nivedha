@@ -25,7 +25,6 @@ user_id number,user_name varchar2(30) not null,user_password varchar2(20),user_a
 mail_id varchar2(40) not null,
 qualification varchar2(50) not null,gender varchar2(10) not null,
 constraint user_id_pk primary key(user_id),
---constraint user_password_ck check (user_password like ('%[0-9]%') and user_password like ('%[a-z]%') and user_password like ('%[!@#$%a^&*()-_+=.,;:"`~]%')),
 constraint mobile_no check(mobile_no not like('%[^0-9]%')),
 constraint gender_ck check(gender in('male','female'))
 );
