@@ -44,7 +44,7 @@ create table registration
 user_id number,
 user_name varchar2(30) not null,
 user_password varchar2(8),
-user_address varchar2(100)not null,
+user_city varchar2(100) not null,
 mobile_no number(10) not null,
 mail_id varchar2(40) not null,
 qualification varchar2(20) not null,
