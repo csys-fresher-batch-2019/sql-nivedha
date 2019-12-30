@@ -1,8 +1,11 @@
 # TRAINING AND PLACEMENT SERVICE
-* http://
+* http://trainingandplacementservice.in
+
 ## Features
 * user should be able to view all the courses available in the institution
-### Feature 1: List all courses
+
+### Feature 1: List all the courses
+
 create table course
 (
 course_id number,course_name varchar2(30) not null,course_duration varchar2(100)not null,course_fees number not null,
