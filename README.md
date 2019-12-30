@@ -17,7 +17,7 @@ course_duration number not null,
 course_fees number not null,
 constraint course_id_pk primary key(course_id),
 constraint course_name_uq unique(course_name),
-
+constraint course_duration_ck check(course_duration in(3,6)),
 constraint course_fees_ck check(course_fees>0)
 );
 create sequence course_id_seq start with 1001 increment by 4;
