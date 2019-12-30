@@ -14,6 +14,7 @@ create table course
 course_id number,course_name varchar2(30) not null,course_duration varchar2(100)not null,course_fees number not null,
 constraint course_id_pk primary key(course_id)
 );
+'''
 
 Query:
 create sequence course_id_seq start with 1001 increment by 4;
@@ -24,7 +25,7 @@ insert into course(course_id,course_name,course_duration,course_fees) values (co
 select * from course;
 drop table course;
 drop sequence course_id_seq;
-'''
+
 
 create table registration
 (
