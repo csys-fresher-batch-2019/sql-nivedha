@@ -1,26 +1,42 @@
+create table course
+(
+course_id number,course_name varchar2(30) not null,course_duration varchar2(100)not null,course_fees number not null,
+constraint course_id_pk primary key(course_id)
+);
+create sequence course_id_seq start with 1001 increment by 4;
+insert into course(course_id,course_name,course_duration,course_fees) values (course_id_seq.nextval,'java','1 year',50000);
+insert into course(course_id,course_name,course_duration,course_fees) values (course_id_seq.nextval,'.net','6 months',25000);
+insert into course(course_id,course_name,course_duration,course_fees) values (course_id_seq.nextval,'java','1 year',50000);
+select * from course;
+drop table course;
+drop sequence course_id_seq;
+
+
 create table registration
 (
-user_id number,user_name varchar2(30) not null,user_address varchar2(100)not null,mobile_no number(10) not null,
+user_id number,user_name varchar2(30) not null,user_password varchar2(20),user_address varchar2(100)not null,mobile_no number(10) not null,
 mail_id varchar2(40) not null,
 qualification varchar2(50) not null,gender varchar2(10) not null,
 constraint user_id_pk primary key(user_id),
+--constraint user_password_ck check (user_password like ('%[0-9]%') and user_password like ('%[a-z]%') and user_password like ('%[!@#$%a^&*()-_+=.,;:"`~]%')),
+constraint mobile_no check(mobile_no not like('%[^0-9]%')),
 constraint gender_ck check(gender in('male','female'))
 );
+create sequence user_id_seq start with 101 increment by 1;
+insert into registration(user_id,user_name,user_password,user_address,mobile_no,mail_id,qualification,gender)VALUES 
+(user_id_seq.nextval,'nivedha','nivi@12','pondicherry',9994204643,'nivij@gmail.com','MCA','female');
+insert into registration(user_id,user_name,user_password,user_address,mobile_no,mail_id,qualification,gender)VALUES 
+(user_id_seq.nextval,'sujitha','suji%56','chennai',9894906643,'suji@gmail.com','BE-ECE','female');
+insert into registration(user_id,user_name,user_password,user_address,mobile_no,mail_id,qualification,gender)VALUES 
+(user_id_seq.nextval,'brinda','brin#01','salem',9764904642,'brinda@gmail.com','Msc-CS','female');
+insert into registration(user_id,user_name,user_password,user_address,mobile_no,mail_id,qualification,gender)VALUES 
+(user_id_seq.nextval,'sundar','sun_126','sivagasi',9344204643,'sundar@gmail.com','BE-IT','male');
+insert into registration(user_id,user_name,user_password,user_address,mobile_no,mail_id,qualification,gender)VALUES 
+(user_id_seq.nextval,'deepan','deep*28','chennai',9764320464,'deepan@gmail.com','BE-MECH','male');
+select * from registration;
+drop table registration;
+drop sequence user_id_seq;
 
-create table course
-(
-course_id number,course_name varchar2(30) not null,duration varchar2(100)not null,fees number not null,
-constraint course_id_pk primary key(course_id)
-);
-
-create table client
-(
-client_id number,company_name varchar2(30) not null,company_address varchar2(100)not null,mobile_no number(10) not null,
-contact_person varchar2(40) not null,
-mail_id varchar2(40) not null,
-nature_work varchar2(100) not null,
-constraint client_id_pk primary key(client_id)
-);
 
 create table interview
 (
@@ -30,7 +46,16 @@ salary number not null,date_of_joining date not null,remarks varchar2(100) not n
 constraint interview_id_pk primary key (interview_id),
 constraint user_id_fk foreign key(user_id) references registration(user_id)
 );
-
+                           
+create table client
+(
+client_id number,company_name varchar2(30) not null,company_address varchar2(100)not null,mobile_no number(10) not null,
+contact_person varchar2(40) not null,
+mail_id varchar2(40) not null,
+nature_work varchar2(100) not null,
+constraint client_id_pk primary key(client_id)
+);
+                           
 create table fees
 (
 s_no number,course_id number,user_id number not null,amount number,amount_status varchar(30),
