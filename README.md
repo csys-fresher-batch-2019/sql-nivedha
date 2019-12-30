@@ -29,25 +29,35 @@ insert into course(course_id,course_name,course_duration,course_fees)
 values (course_id_seq.nextval,'java','1 year',50000);
 ```
 ```sql
+Query
 select * from course;
 drop table course;
 drop sequence course_id_seq;
 ```
-
+### Feature 2: list the user registration details
+```sql
 create table registration
 (
-user_id number,user_name varchar2(30) not null,user_password varchar2(20),user_address varchar2(100)not null,mobile_no number(10) not null,
+user_id number,
+user_name varchar2(30) not null,
+user_password varchar2(20),
+user_address varchar2(100)not null,
+mobile_no number(10) not null,
 mail_id varchar2(40) not null,
-qualification varchar2(50) not null,gender varchar2(10) not null,
+qualification varchar2(50) not null,
+gender varchar2(10) not null,
 constraint user_id_pk primary key(user_id),
 constraint mobile_no check(mobile_no not like('%[^0-9]%')),
 constraint gender_ck check(gender in('male','female'))
 );
 create sequence user_id_seq start with 101 increment by 1;
-insert into registration(user_id,user_name,user_password,user_address,mobile_no,mail_id,qualification,gender)VALUES 
-(user_id_seq.nextval,'nivedha','nivi@12','pondicherry',9994204643,'nivij@gmail.com','MCA','female');
-insert into registration(user_id,user_name,user_password,user_address,mobile_no,mail_id,qualification,gender)VALUES 
-(user_id_seq.nextval,'sujitha','suji%56','chennai',9894906643,'suji@gmail.com','BE-ECE','female');
+```
+```sql
+Insert Query:
+insert into registration(user_id,user_name,user_password,user_address,mobile_no,mail_id,qualification,gender)
+VALUES (user_id_seq.nextval,'nivedha','nivi@12','pondicherry',9994204643,'nivij@gmail.com','MCA','female');
+insert into registration(user_id,user_name,user_password,user_address,mobile_no,mail_id,qualification,gender)
+VALUES (user_id_seq.nextval,'sujitha','suji%56','chennai',9894906643,'suji@gmail.com','BE-ECE','female');
 insert into registration(user_id,user_name,user_password,user_address,mobile_no,mail_id,qualification,gender)VALUES 
 (user_id_seq.nextval,'brinda','brin#01','salem',9764904642,'brinda@gmail.com','Msc-CS','female');
 insert into registration(user_id,user_name,user_password,user_address,mobile_no,mail_id,qualification,gender)VALUES 
