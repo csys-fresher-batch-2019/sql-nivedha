@@ -41,7 +41,8 @@ constraint amount_status_ck check(amount_status in('paid','notpaid'))
 );
 create table report
 (
-sl_no number,no_reg number,training_details number,
-completion_details number,selection_list number,pending_list number,rejected_list number,total_fees_collected number,
+sl_no number,no_reg number not null,training_details number not null,
+completion_details number not null,selection_list number not null,pending_list number not,
+rejected_list number not null,total_fees_collected number not null,
 constraint sl_no_pk primary key(sl_no)
 );
