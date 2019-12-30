@@ -12,7 +12,7 @@
 create table course
 (
 course_id number,
-course_name varchar2(30) not null,
+course_name varchar2(100) not null,
 course_duration varchar2(100)not null,
 course_fees number not null,
 constraint course_id_pk primary key(course_id),
