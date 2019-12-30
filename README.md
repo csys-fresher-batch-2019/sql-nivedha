@@ -41,14 +41,15 @@ create table registration
 (
 user_id number,
 user_name varchar2(30) not null,
-user_password varchar2(20),
+user_password varchar2(8),
 user_address varchar2(100)not null,
 mobile_no number(10) not null,
 mail_id varchar2(40) not null,
-qualification varchar2(50) not null,
+qualification varchar2(20) not null,
 gender varchar2(10) not null,
 constraint user_id_pk primary key(user_id),
 constraint mobile_no check(mobile_no not like('%[^0-9]%')),
+constraint mail_id_uq unique(mail_id),
 constraint gender_ck check(gender in('male','female'))
 );
 create sequence user_id_seq start with 101 increment by 1;
