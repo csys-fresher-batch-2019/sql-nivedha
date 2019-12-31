@@ -79,9 +79,13 @@ create sequence user_id_seq start with 201 increment by 1;
 
 Insert Query:
 ```sql
-insert into registration(user_id,user_name,user_password,user_city,mobile_no,mail_id,qualification,gender)VALUES 
+insert into registration
+(user_id,user_name,user_password,user_city,mobile_no,mail_id,qualification,gender)
+values 
 (user_id_seq.nextval,'nivedha','nivi@12','pondicherry',9994204643,'nivij@gmail.com','MCA','female');
-insert into registration(user_id,user_name,user_password,user_city,mobile_no,mail_id,qualification,gender)VALUES 
+insert into registration
+(user_id,user_name,user_password,user_city,mobile_no,mail_id,qualification,gender)
+values 
 (user_id_seq.nextval,'sujitha','suji%56','chennai',9894906643,'suji@gmail.com','BE-ECE','female');
 ```
 
@@ -120,10 +124,14 @@ create sequence course_id_seqq start with 1001 increment by 4;
 
 Insert Query:
 ```sql
-insert into usercourse(user_course_id,user_id,course_id,start_date,completion_date)VALUES 
+insert into usercourse
+(user_course_id,user_id,course_id,start_date,completion_date)
+values 
 (user_course_id_seq.nextval,user_id_sequ.nextval,course_id_seqq.nextval,
 to_date('01-01-2020','dd-mm-yyyy'),to_date('31-03-2020','dd-mm-yyyy'));
-insert into usercourse(user_course_id,user_id,course_id,start_date,completion_date)VALUES 
+insert into usercourse
+(user_course_id,user_id,course_id,start_date,completion_date)
+values 
 (user_course_id_seq.nextval,user_id_sequ.nextval,course_id_seqq.nextval,
 to_date('05-03-2020','dd-mm-yyyy'),to_date('05-06-2020','dd-mm-yyyy'));
 ```
@@ -164,10 +172,14 @@ create sequence client_id_seq start with 1111 increment by 1;
 
 Insert Query:
 ```sql
-insert into clientcmpy(client_id,company_name,company_type,company_address,ph_no,contact_person,email_id) 
-values(client_id_seq.nextval,'chainsys','software','kelambakkam',9897654389,'deepa','chainsys@gmail.com');
-insert into clientcmpy(client_id,company_name,company_type,company_address,ph_no,contact_person,email_id) 
-values(client_id_seq.nextval,'newgen','software','neelankarai',9643437889,'mohan','newgen@gmail.com');
+insert into clientcmpy
+(client_id,company_name,company_type,company_address,ph_no,contact_person,email_id) 
+values
+(client_id_seq.nextval,'chainsys','software','kelambakkam',9897654389,'deepa','chainsys@gmail.com');
+insert into clientcmpy
+(client_id,company_name,company_type,company_address,ph_no,contact_person,email_id) 
+values
+(client_id_seq.nextval,'newgen','software','neelankarai',9643437889,'mohan','newgen@gmail.com');
 ```
 
 Query:
@@ -205,10 +217,14 @@ create sequence client_id_sequ start with 1111 increment by 1;
 
 Insert Query:
 ```sql
-insert into schedule(interview_id,client_id,job_title,job_requirement,interview_date,interview_time)
-values(1,client_id_sequ.nextval,'software developer','java',to_date('02-01-2020','dd-mm-yyyy'),'10AM');
-insert into schedule(interview_id,client_id,company_name,job_title,job_requirement,interview_date,interview_time)
-values(2,client_id_sequ.nextval,'sql developer','oracle',to_date('11-01-2020','dd-mm-yyyy'),'11AM');
+insert into schedule
+(interview_id,client_id,job_title,job_requirement,interview_date,interview_time)
+values
+(1,client_id_sequ.nextval,'software developer','java',to_date('02-01-2020','dd-mm-yyyy'),'10AM');
+insert into schedule
+(interview_id,client_id,company_name,job_title,job_requirement,interview_date,interview_time)
+values
+(2,client_id_sequ.nextval,'sql developer','oracle',to_date('11-01-2020','dd-mm-yyyy'),'11AM');
 ```
 
 Query:
@@ -249,10 +265,14 @@ create sequence user_id_seqe start with 201 increment by 1;
 
 Insert Query:
 ```sql
-insert into interview(sl_no,client_id,user_id,inter_perform,inter_status,marks)
-values(sl_no_seqe.nextval,client_id_seqe.nextval,user_id_seqe.nextval,'good','selected',9);
-insert into interview(sl_no,client_id,user_id,inter_perform,inter_status,marks)
-values(sl_no_seqe.nextval,client_id_seqe.nextval,user_id_seqe.nextval,'better','waiting',6);
+insert into interview
+(sl_no,client_id,user_id,inter_perform,inter_status,marks)
+values
+(sl_no_seqe.nextval,client_id_seqe.nextval,user_id_seqe.nextval,'good','selected',9);
+insert into interview
+(sl_no,client_id,user_id,inter_perform,inter_status,marks)
+values
+(sl_no_seqe.nextval,client_id_seqe.nextval,user_id_seqe.nextval,'better','waiting',6);
 ```
 
 Query:
@@ -293,11 +313,15 @@ create sequence userr_id_seqe start with 201 increment by 1;
 
 Insert Query:
 ```sql
-insert into fees(user_course_id,user_id,course_fees,fees_status,paid_date,deadline_date)
-values(user_courseid_seqe.nextval,userr_id_seqe.nextval,10000,'paid',to_date('29-01-2019','dd-mm-yyyy'),
+insert into fees
+(user_course_id,user_id,course_fees,fees_status,paid_date,deadline_date)
+values
+(user_courseid_seqe.nextval,userr_id_seqe.nextval,10000,'paid',to_date('29-01-2019','dd-mm-yyyy'),
 to_date('10-01-2019','dd-mm-yyyy'));
-insert into fees(user_course_id,user_id,course_fees,fees_status,paid_date,deadline_date)
-values(user_courseid_seqe.nextval,userr_id_seqe.nextval,20000,'bending',to_date('00-00-0000','dd-mm-yyyy'),
+insert into fees
+(user_course_id,user_id,course_fees,fees_status,paid_date,deadline_date)
+values
+(user_courseid_seqe.nextval,userr_id_seqe.nextval,20000,'bending',to_date('00-00-0000','dd-mm-yyyy'),
 to_date('12-01-2020','dd-mm-yyyy'));
 ```
 
