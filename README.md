@@ -8,6 +8,13 @@
 
 ### Feature 1: List all the courses
 
+course details:
+
+| course_id | course_name | course_duration | course_fees |
+|-----------|-------------|-----------------|-------------|
+| 1001      | java        | 6               | 20000       |
+| 1005      | .net        | 3               | 10000       |
+
 ```sql
 create table course
 (
@@ -28,8 +35,6 @@ insert into course(course_id,course_name,course_duration,course_fees)
 values (course_id_seq.nextval,'java','6',50000);
 insert into course(course_id,course_name,course_duration,course_fees) 
 values (course_id_seq.nextval,'.net','3',25000);
-insert into course(course_id,course_name,course_duration,course_fees) 
-values (course_id_seq.nextval,'oracle','6',50000);
 ```
 Query:
 ```sql
@@ -39,6 +44,13 @@ drop sequence course_id_seq;
 ```
 
 ### Feature 2: list the user registration details
+
+user registration details:
+
+| user_id | user_name | user_password | user_city   | mobile_no  | mail_id         | qualification | gender |  
+|---------|-----------|---------------|-------------|------------|-----------------|---------------|--------|
+| 201     | nivedha   | nivi@12       | pondicherry | 9994204643 | nivij@gmail.com | MCA           | female | 
+| 203     | sujitha   | suji%56       | chennai     | 9894906643 | suji@gmail.com  | BE-ECE        | female | 
 
 ```sql
 create table registration
@@ -51,27 +63,19 @@ mobile_no number(10)not null,
 mail_id varchar2(40)not null,
 qualification varchar2(50) not null,
 gender varchar2(10) not null,
-course_name varchar2(100) not null,
 constraint user_id_pk primary key(user_id),
 constraint mobile_no_ck check(length(To_char(mobile_no))=10),
 constraint mail_id_uqq unique(mail_id),
-constraint gender_cck check(gender in('male','female')),
-constraint course_name_uqq unique(user_id,course_name)
+constraint gender_cck check(gender in('male','female'))
 );
-create sequence user_id_seq start with 101 increment by 1;
+create sequence user_id_seq start with 201 increment by 1;
 ```
 Insert Query:
 ```sql
-insert into registration(user_id,user_name,user_password,user_city,mobile_no,mail_id,qualification,gender,course_name)VALUES 
-(user_id_seq.nextval,'nivedha','nivi@12','pondicherry',9994204643,'nivij@gmail.com','MCA','female','java');
-insert into registration(user_id,user_name,user_password,user_city,mobile_no,mail_id,qualification,gender,course_name)VALUES 
-(user_id_seq.nextval,'sujitha','suji%56','chennai',9894906643,'suji@gmail.com','BE-ECE','female','oracle');
-insert into registration(user_id,user_name,user_password,user_city,mobile_no,mail_id,qualification,gender,course_name)VALUES 
-(user_id_seq.nextval,'brinda','brin#01','salem',9764904642,'brinda@gmail.com','Msc-CS','female','.net');
-insert into registration(user_id,user_name,user_password,user_city,mobile_no,mail_id,qualification,gender,course_name)VALUES 
-(user_id_seq.nextval,'sundar','sun_126','sivakasi',9344204643,'sundar@gmail.com','BE-IT','male','selenium');
-insert into registration(user_id,user_name,user_password,user_city,mobile_no,mail_id,qualification,gender,course_name)VALUES 
-(user_id_seq.nextval,'deepan','deep*28','chennai',9764320464,'deepan@gmail.com','BE-MECH','male','python');
+insert into registration(user_id,user_name,user_password,user_city,mobile_no,mail_id,qualification,gender)VALUES 
+(user_id_seq.nextval,'nivedha','nivi@12','pondicherry',9994204643,'nivij@gmail.com','MCA','female');
+insert into registration(user_id,user_name,user_password,user_city,mobile_no,mail_id,qualification,gender)VALUES 
+(user_id_seq.nextval,'sujitha','suji%56','chennai',9894906643,'suji@gmail.com','BE-ECE','female');
 ```
 Query:
 ```sql
@@ -79,7 +83,55 @@ select * from registration;
 drop table registration;
 drop sequence user_id_seq;
 ```
-### Feature 3: List all the client companies
+
+### Feature 3: List all the user course details
+
+user_course details:
+
+| user_course_id | user_id | course_id | start_date | completion_date |
+|----------------|---------|-----------|------------|-----------------|
+| 2020           | 201     | 1001      | 01-01-2020 | 31-03-2020      |
+| 2021           | 203     | 1005      | 05-03-2020 | 05-06-2020      |
+
+```sql
+create table usercourse
+(
+user_course_id number,
+user_id number,
+course_id number,
+start_date date,
+completion_date date,
+constraint user_course_id_pk primary key(user_course_id),
+constraint user_idd_uni unique(user_id),
+constraint users_id_unq unique(user_id,course_id)
+);
+create sequence user_course_id_seq start with 2020;
+create sequence user_id_sequ start with 201 increment by 1;
+create sequence course_id_seqq start with 1001 increment by 4;
+```
+Insert Query:
+```sql
+insert into usercourse(user_course_id,user_id,course_id,start_date,completion_date)VALUES 
+(user_course_id_seq.nextval,user_id_sequ.nextval,course_id_seqq.nextval,
+to_date('01-01-2020','dd-mm-yyyy'),to_date('31-03-2020','dd-mm-yyyy'));
+insert into usercourse(user_course_id,user_id,course_id,start_date,completion_date)VALUES 
+(user_course_id_seq.nextval,user_id_sequ.nextval,course_id_seqq.nextval,
+to_date('05-03-2020','dd-mm-yyyy'),to_date('05-06-2020','dd-mm-yyyy'));
+```
+Query:
+```sql
+select * from usercourse;
+drop table usercourse;
+```
+
+### Feature 4: List all the client companies
+
+client company details:
+
+| client_id | company_name | company_type | company_address | phone_no   | contact_person | email_id           | 
+|-----------|--------------|--------------|-----------------|------------|----------------|--------------------|
+| 1111      | chainsys     | software     | kelambakkam     | 9897654389 | deepa          | chainsys@gmail.com | 
+| 1113      | newgen       | software     | neelankarai     | 9643437889 | mohan          | newgen@gmail.com   | 
 
 ```sql
 create table clientcmpy
@@ -91,22 +143,20 @@ company_address varchar2(100)not null,
 ph_no number(10) not null,
 contact_person varchar2(40) not null,
 email_id varchar2(40) not null,
-nature_work varchar2(100) not null,
 constraint client_id_pk primary key(client_id),
 constraint company_name_uq unique(company_name),
 constraint company_type_ck check(company_type in('software')),
 constraint ph_no_ck check(length(To_char(ph_no))=10),
 constraint email_idd_uq unique(email_id),
-constraint nature_work_ck check (nature_work in('full-time','part-time'))
 );
-create sequence client_id_seq start with 10001 increment by 1;
+create sequence client_id_seq start with 1111 increment by 1;
 ```
 Insert Query:
 ```sql
-insert into clientcmpy(client_id,company_name,company_type,company_address,ph_no,contact_person,email_id,nature_work) 
-values(client_id_seq.nextval,'chainsys','software','kelambakkam',9897654389,'deepa','chainsys@gmail.com','full-time');
-insert into clientcmpy(client_id,company_name,company_type,company_address,ph_no,contact_person,email_id,nature_work) 
-values(client_id_seq.nextval,'newgen','software','neelankarai',9643437889,'mohan','newgen@gmail.com','part-time');
+insert into clientcmpy(client_id,company_name,company_type,company_address,ph_no,contact_person,email_id) 
+values(client_id_seq.nextval,'chainsys','software','kelambakkam',9897654389,'deepa','chainsys@gmail.com');
+insert into clientcmpy(client_id,company_name,company_type,company_address,ph_no,contact_person,email_id) 
+values(client_id_seq.nextval,'newgen','software','neelankarai',9643437889,'mohan','newgen@gmail.com');
 ```
 Query:
 ```sql
@@ -114,57 +164,121 @@ select * from clientcmpy;
 drop table clientcmpy;
 drop sequence client_id_seq;
 ```
+
+### Feature 5: List the interview schedule details
+
+| interview_id | client_id | job_title          | job_requirement | interview_date | interview_time |
+|--------------|-----------|--------------------|-----------------|----------------|----------------|
+| 1            | 1111      | software developer | java            | 02-01-2020     | 10AM           |
+| 2            | 1113      | sql developer      | oracle          | 11-01-2020     | 11AM           |
+
+```sql
 create table schedule
 (
-sl_no number,
+interview_id number,
 client_id number,
-company_name varchar2(100),
 job_title varchar2(100) not null,
 job_requirement varchar2(100) not null,
 interview_date date not null,
 interview_time varchar2(50) not null,
-constraint sl_noo_pk primary key(sl_no),
-constraint client_id_fkk foreign key(sl_no) references clientcmpy(client_id),
-constraint company_name_uni unique(company_name)
+constraint interview_id_pk primary key(interview_id),
+--constraint client_id_fkk foreign key(sl_no) references clientcmpy(client_id),
+constraint client_id_uni unique(client_id)
 );
+create sequence interview_id_seq start with 1;
+create sequence client_id_sequ start with 1111 increment by 1;
+```
+Insert Query:
+```sql
+insert into schedule(interview_id,client_id,job_title,job_requirement,interview_date,interview_time)
+values(1,client_id_sequ.nextval,'software developer','java',to_date('02-01-2020','dd-mm-yyyy'),'10AM');
+insert into schedule(interview_id,client_id,company_name,job_title,job_requirement,interview_date,interview_time)
+values(2,client_id_sequ.nextval,'sql developer','oracle',to_date('11-01-2020','dd-mm-yyyy'),'11AM');
+```
+Query:
+```sql
 drop table schedule;
-create sequence client_id_sequ start with 10001 increment by 1;
-insert into schedule(sl_no,client_id,company_name,job_title,job_requirement,interview_date,interview_time)
-values(1,client_id_sequ.nextval,'chainsys','software developer','java',to_date('02-01-2020','dd-mm-yyyy'),'10AM');
-insert into schedule(sl_no,client_id,company_name,job_title,job_requirement,interview_date,interview_time)
-values(2,client_id_sequ.nextval,'newgen','sql developer','oracle',to_date('11-01-2020','dd-mm-yyyy'),'11AM');
+drop sequence interview_id_seq;
+drop sequence client_id_sequ;
+```
 
+### Feature 6: List the interview performance details
 
+| sl_no | client_id | user_id | interview_performance | interview_status | marks | 
+|-------|-----------|---------|-----------------------|------------------|-------|
+|  1    | 1111      | 201     | good                  | selected         |  9    | 
+|  2    | 1113      | 203     | better                | waiting          |  7    | 
+
+```sql
 create table interview
 (
+sl_no number,
 client_id number not null,
-user_id number,
-job_title varchar2(100) not null,
+user_id number not null,
 inter_perform varchar2(100) not null,
-status varchar(50) not null,
-marks number not null
-date_of_joining date not null
+inter_status varchar(50) not null,
+marks number not null,
+constraint sl_no_pk primary key(sl_no),
+constraint uuser_id_uq unique(client_id,user_id),
+constraint inter_perform_ck check (inter_perform in('good','better','bad'),
+constraint inter_status_ck check (inter_status in('selected','waiting','rejected'),
+--constraint marks_ck check marks<5=Bad,marks between 5 to 7= Better,marks between 7 to 10= Good
 );
-                           
+create sequence sl_no_seqe start with 1;
+create sequence client_id_seqe start with 1111 increment by 1;                          
+create sequence user_id_seqe start with 201 increment by 1;
+```
+Insert Query:
+```sql
+insert into interview(sl_no,client_id,user_id,inter_perform,inter_status,marks)
+values(sl_no_seqe.nextval,client_id_seqe.nextval,user_id_seqe.nextval,'good','selected',9);
+insert into interview(sl_no,client_id,user_id,inter_perform,inter_status,marks)
+values(sl_no_seqe.nextval,client_id_seqe.nextval,user_id_seqe.nextval,'better','waiting',6);
+```
+Query:
+```sql
+select * from interview;
+drop table interview;
+drop sequence sl_no_seqe;
+drop sequence client_id_seqe;
+drop sequence user_id_seqe;
+```
 
-                           
+### Feature 7: List the fees details
+
+| user_course_id | user_id | course_fees | fees_status | paid_date  | deadline_date |
+|----------------|---------|-------------|-------------|------------|---------------|
+| 1              | 101     | 10000       | paid        | 29-01-2019 | 10-01-2020    |
+| 2              | 103     | 20000       | bending     | (NULL)     | 12-01-2020    |
+
+```sql
 create table fees
 (
-course_id number,
+user_course_id number,
 user_id number not null,
-amount number,
-amount_status varchar(30),
+course_fees number,
+fees_status varchar(30),
 paid_date date,
 deadline_date date,
-constraint s_no_pk primary key(s_no),
-constraint user_id_fk foreign key(user_id) references registration(user_id),
-constraint amount_ck check(amount>0),
-constraint amount_status_ck check(amount_status in('paid','notpaid'))
+constraint user_courseid_pk primary key(user_course_id),
+constraint user_id_fk foreign key(course_id) references registration(user_id),
+constraint cfees_ck check(course_fees>0),
+constraint fees_status_ck check(fees_status in('paid','bending'))
 );
-create table report
-(
-sl_no number,no_reg number not null,training_details number not null,
-completion_details number not null,selection_list number not null,pending_list number not,
-rejected_list number not null,total_fees_collected number not null,
-constraint sl_no_pk primary key(sl_no)
-);
+create sequence user_courseid_seqe start with 2020;
+create sequence userr_id_seqe start with 201 increment by 1;
+```
+Insert Query:
+```sql
+insert into fees(user_course_id,user_id,course_fees,fees_status,paid_date,deadline_date)
+values(user_courseid_seqe.nextval,userr_id_seqe.nextval,10000,'paid',to_date('29-01-2019','dd-mm-yyyy'),
+to_date('10-01-2019','dd-mm-yyyy'));
+insert into fees(user_course_id,user_id,course_fees,fees_status,paid_date,deadline_date)
+values(user_courseid_seqe.nextval,userr_id_seqe.nextval,20000,'bending',to_date('00-00-0000','dd-mm-yyyy'),
+to_date('12-01-2020','dd-mm-yyyy'));
+```
+Query:
+```sql
+select * from fees;
+```
+
