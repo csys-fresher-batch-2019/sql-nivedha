@@ -8,8 +8,6 @@
 
 ### Feature 1: List all the courses
 
-course details:
-
 | course_id | course_name | course_duration | course_fees |
 |-----------|-------------|-----------------|-------------|
 | 1001      | java        | 6               | 20000       |
@@ -44,8 +42,6 @@ drop sequence course_id_seq;
 ```
 
 ### Feature 2: list the user registration details
-
-user registration details:
 
 | user_id | user_name | user_password | user_city   | mobile_no  | mail_id         | qualification | gender |  
 |---------|-----------|---------------|-------------|------------|-----------------|---------------|--------|
@@ -86,8 +82,6 @@ drop sequence user_id_seq;
 
 ### Feature 3: List all the user course details
 
-user_course details:
-
 | user_course_id | user_id | course_id | start_date | completion_date |
 |----------------|---------|-----------|------------|-----------------|
 | 2020           | 201     | 1001      | 01-01-2020 | 31-03-2020      |
@@ -125,8 +119,6 @@ drop table usercourse;
 ```
 
 ### Feature 4: List all the client companies
-
-client company details:
 
 | client_id | company_name | company_type | company_address | phone_no   | contact_person | email_id           | 
 |-----------|--------------|--------------|-----------------|------------|----------------|--------------------|
