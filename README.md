@@ -137,18 +137,25 @@ values(2,client_id_sequ.nextval,'newgen','sql developer','oracle',to_date('11-01
 
 create table interview
 (
-interview_id number,client_id number not null,place varchar2(50)not null,interview_date date not null,
-user_id number,performance varchar2(100) not null,
-salary number not null,date_of_joining date not null,remarks varchar2(100) not null,
-constraint interview_id_pk primary key (interview_id),
-constraint user_id_fk foreign key(user_id) references registration(user_id)
+client_id number not null,
+user_id number,
+job_title varchar2(100) not null,
+inter_perform varchar2(100) not null,
+status varchar(50) not null,
+marks number not null
+date_of_joining date not null
 );
                            
 
                            
 create table fees
 (
-s_no number,course_id number,user_id number not null,amount number,amount_status varchar(30),
+course_id number,
+user_id number not null,
+amount number,
+amount_status varchar(30),
+paid_date date,
+deadline_date date,
 constraint s_no_pk primary key(s_no),
 constraint user_id_fk foreign key(user_id) references registration(user_id),
 constraint amount_ck check(amount>0),
