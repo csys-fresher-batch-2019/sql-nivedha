@@ -32,10 +32,14 @@ create sequence course_id_seq start with 1001 increment by 4;
 
 Insert Query:
 ```sql
-insert into course(course_id,course_name,course_duration,course_fees) 
-values (course_id_seq.nextval,'java','6',50000);
-insert into course(course_id,course_name,course_duration,course_fees) 
-values (course_id_seq.nextval,'.net','3',25000);
+insert into course
+(course_id,course_name,course_duration,course_fees) 
+values 
+(course_id_seq.nextval,'java','6',50000);
+insert into course
+(course_id,course_name,course_duration,course_fees) 
+values 
+(course_id_seq.nextval,'.net','3',25000);
 ```
 
 Query:
