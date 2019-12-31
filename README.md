@@ -114,6 +114,21 @@ select * from clientcmpy;
 drop table clientcmpy;
 drop sequence client_id_seq;
 ```
+create table schedule
+(
+sl_no number,
+client_id number,
+company_name varchar2(100),
+job_title varchar2(100),
+job_requirement varchar2(100),
+interview_date date,
+interview_time varchar2(50),
+constraint sl_noo_pk primary key(sl_no),
+constraint client_id_fkk foreign key(client_id) references clientcmpy(client_id),
+constraint company_name_uni unique(company_name),
+
+
+);
 
 create table interview
 (
