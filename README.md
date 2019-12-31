@@ -77,17 +77,33 @@ select * from registration;
 drop table registration;
 drop sequence user_id_seq;
 ```
-create table client
+### Feature 3: List all the client companies
+
+create table clientcmpy
 (
 client_id number,
 company_name varchar2(30) not null,
+company_type varchar2(30),
 company_address varchar2(100)not null,
-mobile_no number(10) not null,
+ph_no number(10) not null,
 contact_person varchar2(40) not null,
-mail_id varchar2(40) not null,
+email_id varchar2(40) not null,
 nature_work varchar2(100) not null,
-constraint client_id_pk primary key(client_id)
+constraint client_id_pk primary key(client_id),
+constraint company_name_uq unique(company_name),
+constraint company_type_ck check(company_type in('software')),
+constraint email_idd_uq unique(email_id),
+constraint nature_work_ck check (nature_work in('full-time','part-time'))
 );
+create sequence client_id_seq start with 10001 increment by 1;
+insert into clientcmpy(client_id,company_name,company_type,company_address,ph_no,contact_person,email_id,nature_work) 
+values(client_id_seq.nextval,'chainsys','software','kelambakkam',9897654389,'deepa','chainsys@gmail.com','full-time');
+insert into clientcmpy(client_id,company_name,company_type,company_address,ph_no,contact_person,email_id,nature_work) 
+values(client_id_seq.nextval,'newgen','software','neelankarai',9643437889,'mohan','newgen@gmail.com','part-time');
+select * from clientcmpy;
+drop table clientcmpy;
+drop sequence client_id_seq;
+
 create table interview
 (
 interview_id number,client_id number not null,place varchar2(50)not null,interview_date date not null,
