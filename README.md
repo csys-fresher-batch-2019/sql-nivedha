@@ -77,7 +77,17 @@ select * from registration;
 drop table registration;
 drop sequence user_id_seq;
 ```
-
+create table client
+(
+client_id number,
+company_name varchar2(30) not null,
+company_address varchar2(100)not null,
+mobile_no number(10) not null,
+contact_person varchar2(40) not null,
+mail_id varchar2(40) not null,
+nature_work varchar2(100) not null,
+constraint client_id_pk primary key(client_id)
+);
 create table interview
 (
 interview_id number,client_id number not null,place varchar2(50)not null,interview_date date not null,
@@ -87,14 +97,7 @@ constraint interview_id_pk primary key (interview_id),
 constraint user_id_fk foreign key(user_id) references registration(user_id)
 );
                            
-create table client
-(
-client_id number,company_name varchar2(30) not null,company_address varchar2(100)not null,mobile_no number(10) not null,
-contact_person varchar2(40) not null,
-mail_id varchar2(40) not null,
-nature_work varchar2(100) not null,
-constraint client_id_pk primary key(client_id)
-);
+
                            
 create table fees
 (
