@@ -37,7 +37,9 @@ select * from course;
 drop table course;
 drop sequence course_id_seq;
 ```
+
 ### Feature 2: list the user registration details
+
 ```sql
 create table registration
 (
@@ -51,7 +53,7 @@ qualification varchar2(50) not null,
 gender varchar2(10) not null,
 course_name varchar2(100) not null,
 constraint user_id_pk primary key(user_id),
-constraint mobile_no_ckk check(mobile_no not like('%[^0-9]%')),
+constraint mobile_no_ck check(length(To_char(mobile_no))=10),
 constraint mail_id_uqq unique(mail_id),
 constraint gender_cck check(gender in('male','female')),
 constraint course_name_uqq unique(user_id,course_name)
@@ -79,6 +81,7 @@ drop sequence user_id_seq;
 ```
 ### Feature 3: List all the client companies
 
+```sql
 create table clientcmpy
 (
 client_id number,
@@ -92,17 +95,25 @@ nature_work varchar2(100) not null,
 constraint client_id_pk primary key(client_id),
 constraint company_name_uq unique(company_name),
 constraint company_type_ck check(company_type in('software')),
+constraint ph_no_ck check(length(To_char(ph_no))=10),
 constraint email_idd_uq unique(email_id),
 constraint nature_work_ck check (nature_work in('full-time','part-time'))
 );
 create sequence client_id_seq start with 10001 increment by 1;
+```
+Insert Query:
+```sql
 insert into clientcmpy(client_id,company_name,company_type,company_address,ph_no,contact_person,email_id,nature_work) 
 values(client_id_seq.nextval,'chainsys','software','kelambakkam',9897654389,'deepa','chainsys@gmail.com','full-time');
 insert into clientcmpy(client_id,company_name,company_type,company_address,ph_no,contact_person,email_id,nature_work) 
 values(client_id_seq.nextval,'newgen','software','neelankarai',9643437889,'mohan','newgen@gmail.com','part-time');
+```
+Query:
+```sql
 select * from clientcmpy;
 drop table clientcmpy;
 drop sequence client_id_seq;
+```
 
 create table interview
 (
