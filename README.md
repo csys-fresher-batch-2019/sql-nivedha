@@ -53,15 +53,16 @@ course_name varchar2(100) not null,
 constraint user_id_pk primary key(user_id),
 constraint mobile_no_ck check(mobile_no not like('%[^0-9]%')),
 constraint mail_id_uq unique(mail_id),
-constraint gender_ck check(gender in('male','female'))
+constraint gender_ck check(gender in('male','female')),
+constraint course_name_uq unique(user_id,course_name)
 );
 create sequence user_id_seq start with 101 increment by 1;
 ```
 Insert Query:
 ```sql
-insert into registration(user_id,user_name,user_password,user_city,mobile_no,mail_id,qualification,gender)VALUES 
-(user_id_seq.nextval,'nivedha','nivi@12','pondicherry',9994204643,'nivij@gmail.com','MCA','female');
-insert into registration(user_id,user_name,user_password,user_city,mobile_no,mail_id,qualification,gender)VALUES 
+insert into registration(user_id,user_name,user_password,user_city,mobile_no,mail_id,qualification,gender,course_name)VALUES 
+(user_id_seq.nextval,'nivedha','nivi@12','pondicherry',9994204643,'nivij@gmail.com','MCA','female','java');
+insert into registration(user_id,user_name,user_password,user_city,mobile_no,mail_id,qualification,gender,course_name)VALUES 
 (user_id_seq.nextval,'sujitha','suji%56','chennai',9894906643,'suji@gmail.com','BE-ECE','female');
 insert into registration(user_id,user_name,user_password,user_city,mobile_no,mail_id,qualification,gender)VALUES 
 (user_id_seq.nextval,'brinda','brin#01','salem',9764904642,'brinda@gmail.com','Msc-CS','female');
