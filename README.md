@@ -119,16 +119,21 @@ create table schedule
 sl_no number,
 client_id number,
 company_name varchar2(100),
-job_title varchar2(100),
-job_requirement varchar2(100),
-interview_date date,
-interview_time varchar2(50),
+job_title varchar2(100) not null,
+job_requirement varchar2(100) not null,
+interview_date date not null,
+interview_time varchar2(50) not null,
 constraint sl_noo_pk primary key(sl_no),
-constraint client_id_fkk foreign key(client_id) references clientcmpy(client_id),
-constraint company_name_uni unique(company_name),
-
-
+constraint client_id_fkk foreign key(sl_no) references clientcmpy(client_id),
+constraint company_name_uni unique(company_name)
 );
+drop table schedule;
+create sequence client_id_sequ start with 10001 increment by 1;
+insert into schedule(sl_no,client_id,company_name,job_title,job_requirement,interview_date,interview_time)
+values(1,client_id_sequ.nextval,'chainsys','software developer','java',to_date('02-01-2020','dd-mm-yyyy'),'10AM');
+insert into schedule(sl_no,client_id,company_name,job_title,job_requirement,interview_date,interview_time)
+values(2,client_id_sequ.nextval,'newgen','sql developer','oracle',to_date('11-01-2020','dd-mm-yyyy'),'11AM');
+
 
 create table interview
 (
