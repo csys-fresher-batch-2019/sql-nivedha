@@ -165,7 +165,7 @@ constraint client_id_pk primary key(client_id),
 constraint company_name_uq unique(company_name),
 constraint company_type_ck check(company_type in('software')),
 constraint ph_no_ck check(length(To_char(ph_no))=10),
-constraint email_idd_uq unique(email_id),
+constraint emaill_id_uq unique(email_id)
 );
 create sequence client_id_seq start with 1111 increment by 1;
 ```
