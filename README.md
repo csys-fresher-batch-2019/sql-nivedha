@@ -220,15 +220,16 @@ Insert Query:
 insert into schedule
 (interview_id,client_id,job_title,job_requirement,interview_date,interview_time)
 values
-(1,client_id_sequ.nextval,'software developer','java',to_date('02-01-2020','dd-mm-yyyy'),'10AM');
+(interview_id_seq.nextval,client_id_sequ.nextval,'software developer','java',to_date('02-01-2020','dd-mm-yyyy'),'10AM');
 insert into schedule
-(interview_id,client_id,company_name,job_title,job_requirement,interview_date,interview_time)
+(interview_id,client_id,job_title,job_requirement,interview_date,interview_time)
 values
-(2,client_id_sequ.nextval,'sql developer','oracle',to_date('11-01-2020','dd-mm-yyyy'),'11AM');
+(interview_id_seq.nextval,client_id_sequ.nextval,'sql developer','oracle',to_date('11-01-2020','dd-mm-yyyy'),'11AM');
 ```
 
 Query:
 ```sql
+select * from schedule;
 drop table schedule;
 drop sequence interview_id_seq;
 drop sequence client_id_sequ;
@@ -244,7 +245,7 @@ drop sequence client_id_sequ;
 
 
 ```sql
-create table interview
+create table intervieww
 (
 sl_no number,
 client_id number not null,
@@ -252,36 +253,37 @@ user_id number not null,
 inter_perform varchar2(100) not null,
 inter_status varchar(50) not null,
 marks number not null,
-constraint sl_no_pk primary key(sl_no),
-constraint uuser_id_uq unique(client_id,user_id),
-constraint inter_perform_ck check (inter_perform in('good','better','bad'),
-constraint inter_status_ck check (inter_status in('selected','waiting','rejected'),
+constraint serial_noo_pk primary key(sl_no),
+constraint user_id_uniq unique(client_id,user_id),
+constraint interv_perform_ck check (inter_perform in('good','better','bad')),
+constraint interv_status_ck check (inter_status in('selected','waiting','rejected'))
 --constraint marks_ck check marks<5=Bad,marks between 5 to 7= Better,marks between 7 to 10= Good
 );
-create sequence sl_no_seqe start with 1;
-create sequence client_id_seqe start with 1111 increment by 1;                          
-create sequence user_id_seqe start with 201 increment by 1;
+create sequence sl_no_sqn start with 1;
+create sequence clientt_id_sqn start with 1111 increment by 1;                          
+create sequence user_id_sqn start with 201 increment by 1;
+
 ```
 
 Insert Query:
 ```sql
-insert into interview
+insert into intervieww
 (sl_no,client_id,user_id,inter_perform,inter_status,marks)
 values
-(sl_no_seqe.nextval,client_id_seqe.nextval,user_id_seqe.nextval,'good','selected',9);
-insert into interview
+(sl_no_sqn.nextval,clientt_id_sqn.nextval,user_id_sqn.nextval,'good','selected',9);
+insert into intervieww
 (sl_no,client_id,user_id,inter_perform,inter_status,marks)
 values
-(sl_no_seqe.nextval,client_id_seqe.nextval,user_id_seqe.nextval,'better','waiting',6);
+(sl_no_sqn.nextval,clientt_id_sqn.nextval,user_id_sqn.nextval,'better','waiting',6);
 ```
 
 Query:
 ```sql
-select * from interview;
-drop table interview;
-drop sequence sl_no_seqe;
-drop sequence client_id_seqe;
-drop sequence user_id_seqe;
+select * from intervieww;
+drop table intervieww;
+drop sequence sl_no_sqn;
+drop sequence clientt_id_sqn;
+drop sequence user_id_sqn;
 ```
 
 ### Feature 7: List the fees details
