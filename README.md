@@ -45,6 +45,14 @@ values
 Query:
 ```sql
 select * from course;
+--Display all the courses with fees
+select course_name,course_fees from course;
+--Display course and fees in id=1005
+select course_name,course_fees from course where course_id=1005;
+--Display the course fees in ascending order
+select course_name,course_fees from course order by (course_fees)asc;
+--Display the course fees above or equal to 20000
+select course_name,course_fees from course where course_fees>=20000;
 drop table course;
 drop sequence course_id_seq;
 ```
