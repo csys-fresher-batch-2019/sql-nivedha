@@ -291,6 +291,8 @@ values
 Query:
 ```sql
 select * from intervieww;
+select user_id,user_name from registration where user_id=(select user_id from intervieww where inter_perform='good');
+update intervieww set inter_status='selected' where marks>5;
 drop table intervieww;
 drop sequence sl_no_sqn;
 drop sequence clientt_id_sqn;
