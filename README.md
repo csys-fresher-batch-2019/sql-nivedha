@@ -297,6 +297,8 @@ update intervieww set inter_status='selected' where marks>5;
 --Display the selected users in interview and interview performance is good
 select user_id,user_name,qualification from registration where user_id=
 (select user_id from intervieww where inter_perform='good' and inter_status='selected');
+--update the interview status based on the interview marks
+select user_id,client_id,INTERVIEW_PERFORMANCE(5)as interview_performance from intervieww where user_id=202;
 drop table intervieww;
 drop sequence sl_no_sqn;
 drop sequence clientt_id_sqn;
