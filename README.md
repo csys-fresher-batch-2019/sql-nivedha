@@ -294,6 +294,9 @@ select * from course where course_id=
 (select course_id from usercourse where user_id=
 (select user_id from intervieww where inter_perform='better'));
 
+--Display the company details with interview schedule using join query
+select c.client_id,c.company_name,c.contact_person,s.job_requirement,s.job_title,s.interview_date,s.interview_time from clientcmpy c left join schedule s on c.client_id=s.client_id;
+
 --Display the scheduled interview count
 select count(*) from schedule;
 
@@ -348,6 +351,9 @@ values
 Query:
 ```sql
 select * from intervieww;
+
+--Display the user details with interview details using join query
+select r.user_id,r.user_name,r.qualification,i.client_id,i.inter_perform,i.inter_status,i.marks from registration r inner join intervieww i on r.user_id=i.user_id;
 
 --Display the user details where their interview performane is 'good'
 select user_id,user_name from registration where user_id=(select user_id from intervieww where inter_perform='good');
