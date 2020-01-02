@@ -217,8 +217,8 @@ job_requirement varchar2(100) not null,
 interview_date date not null,
 interview_time varchar2(50) not null,
 constraint interview_id_pk primary key(interview_id),
---constraint client_id_fkk foreign key(sl_no) references clientcmpy(client_id),
-constraint client_id_uni unique(client_id)
+constraint client_id_uni unique(client_id),
+constraint client_id_fkk foreign key(client_id) references clientcmpy(client_id)
 );
 create sequence interview_id_seq start with 1;
 create sequence client_id_sequ start with 1111 increment by 1;
@@ -264,6 +264,8 @@ inter_status varchar(50) not null,
 marks number not null,
 constraint serial_noo_pk primary key(sl_no),
 constraint user_id_uniq unique(client_id,user_id),
+constraint client_id_ffk foreign key(client_id) references clientcmpy(client_id),
+constraint user_id_ffk foreign key(user_id) references registration(user_id),
 constraint interv_perform_ck check (inter_perform in('good','better','bad')),
 constraint interv_status_ck check (inter_status in('selected','waiting','rejected'))
 --constraint marks_ck check marks<5=Bad,marks between 5 to 7= Better,marks between 7 to 10= Good
