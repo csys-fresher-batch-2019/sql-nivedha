@@ -241,7 +241,10 @@ values
 Query:
 ```sql
 select * from schedule;
+--Display the client companies where the job requirement is 'java'
 select * from clientcmpy where client_id=(select client_id from schedule where job_requirement='java');
+--Display the company details where the interview date is 05-01-2020
+select * from clientcmpy where client_id=(select client_id from schedule where interview_date='05-01-2020');
 drop table schedule;
 drop sequence interview_id_seq;
 drop sequence client_id_sequ;
@@ -294,7 +297,9 @@ values
 Query:
 ```sql
 select * from intervieww;
+--Display the user details where their interview performane is 'good'
 select user_id,user_name from registration where user_id=(select user_id from intervieww where inter_perform='good');
+--If the interview marks is greater than 5 the candidate s
 update intervieww set inter_status='selected' where marks>5;
 --Display the selected users in interview and interview performance is good
 select user_id,user_name,qualification from registration where user_id=
