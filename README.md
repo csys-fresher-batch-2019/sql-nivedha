@@ -293,57 +293,12 @@ Query:
 select * from intervieww;
 select user_id,user_name from registration where user_id=(select user_id from intervieww where inter_perform='good');
 update intervieww set inter_status='selected' where marks>5;
+--Display the selected users in interview and interview performance is good
 select user_id,user_name,qualification from registration where user_id=
 (select user_id from intervieww where inter_perform='good' and inter_status='selected');
 drop table intervieww;
 drop sequence sl_no_sqn;
 drop sequence clientt_id_sqn;
 drop sequence user_id_sqn;
-```
-
-### Feature 7: List the fees details
-
-
-| user_course_id | user_id | course_fees | fees_status | paid_date  | deadline_date |
-|----------------|---------|-------------|-------------|------------|---------------|
-| 1              | 101     | 10000       | paid        | 29-01-2019 | 10-01-2020    |
-| 2              | 103     | 20000       | bending     | (NULL)     | 12-01-2020    |
-
-
-```sql
-create table fees
-(
-user_course_id number,
-user_id number not null,
-course_fees number,
-fees_status varchar(30),
-paid_date date,
-deadline_date date,
-constraint user_courseid_pk primary key(user_course_id),
-constraint user_id_fk foreign key(course_id) references registration(user_id),
-constraint cfees_ck check(course_fees>0),
-constraint fees_status_ck check(fees_status in('paid','bending'))
-);
-create sequence user_courseid_seqe start with 2020;
-create sequence userr_id_seqe start with 201 increment by 1;
-```
-
-Insert Query:
-```sql
-insert into fees
-(user_course_id,user_id,course_fees,fees_status,paid_date,deadline_date)
-values
-(user_courseid_seqe.nextval,userr_id_seqe.nextval,10000,'paid',to_date('29-01-2019','dd-mm-yyyy'),
-to_date('10-01-2019','dd-mm-yyyy'));
-insert into fees
-(user_course_id,user_id,course_fees,fees_status,paid_date,deadline_date)
-values
-(user_courseid_seqe.nextval,userr_id_seqe.nextval,20000,'bending',to_date('00-00-0000','dd-mm-yyyy'),
-to_date('12-01-2020','dd-mm-yyyy'));
-```
-
-Query:
-```sql
-select * from fees;
 ```
 
