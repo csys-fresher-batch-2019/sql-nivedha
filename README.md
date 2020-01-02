@@ -231,7 +231,7 @@ Insert Query:
 insert into schedule
 (interview_id,client_id,job_title,job_requirement,interview_date,interview_time)
 values
-(interview_id_seq.nextval,client_id_sequ.nextval,'software developer','java',to_date('02-01-2020','dd-mm-yyyy'),'10AM');
+(interview_id_seq.nextval,client_id_sequ.nextval,'software developer','java',to_date('05-01-2020','dd-mm-yyyy'),'10AM');
 insert into schedule
 (interview_id,client_id,job_title,job_requirement,interview_date,interview_time)
 values
@@ -274,7 +274,6 @@ constraint client_id_ffk foreign key(client_id) references clientcmpy(client_id)
 constraint user_id_ffk foreign key(user_id) references registration(user_id),
 constraint interv_perform_ck check (inter_perform in('good','better','bad')),
 constraint interv_status_ck check (inter_status in('selected','waiting','rejected'))
---constraint marks_ck check marks<5=Bad,marks between 5 to 7= Better,marks between 7 to 10= Good
 );
 create sequence sl_no_sqn start with 1;
 create sequence clientt_id_sqn start with 1111 increment by 1;                          
@@ -299,7 +298,7 @@ Query:
 select * from intervieww;
 --Display the user details where their interview performane is 'good'
 select user_id,user_name from registration where user_id=(select user_id from intervieww where inter_perform='good');
---If the interview marks is greater than 5 the candidate s
+--If the interview marks is greater than 5 the candidate status was updated into selected
 update intervieww set inter_status='selected' where marks>5;
 --Display the selected users in interview and interview performance is good
 select user_id,user_name,qualification from registration where user_id=
