@@ -214,11 +214,13 @@ interview_id number,
 client_id number,
 job_title varchar2(100) not null,
 job_requirement varchar2(100) not null,
+created_date timestamp default current_timestamp,
 interview_date date not null,
 interview_time varchar2(50) not null,
 constraint interview_id_pk primary key(interview_id),
 constraint client_id_uni unique(client_id),
-constraint client_id_fkk foreign key(client_id) references clientcmpy(client_id)
+constraint client_id_fkk foreign key(client_id) references clientcmpy(client_id),
+constraint interview_date_ck check (trunc(created_date) <= interview_date )
 );
 create sequence interview_id_seq start with 1;
 create sequence client_id_sequ start with 1111 increment by 1;
@@ -303,5 +305,21 @@ drop table intervieww;
 drop sequence sl_no_sqn;
 drop sequence clientt_id_sqn;
 drop sequence user_id_sqn;
+```
+Function:
+```sql
+CREATE OR REPLACE FUNCTION INTERVIEW_PERFORMANCE(marks number)
+RETURN VARCHAR2 AS 
+v_status VARCHAR2(10);
+BEGIN
+if marks < 5 then
+v_status := 'FAILED';
+elsif marks < 8 then
+v_status := 'WAITING';
+else
+v_status := 'SELECTED';
+end if;
+  RETURN v_status;
+END INTERVIEW_PERFORMANCE;
 ```
 
