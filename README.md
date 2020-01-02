@@ -100,6 +100,10 @@ values
 Query:
 ```sql
 select * from registration;
+--Display the count of female users in the registration table
+select count(*) from registration where gender='female';
+--Display the user details where the qualification is MCA
+select * from registration where qualification='MCA';
 drop table registration;
 drop sequence user_id_seq;
 ```
