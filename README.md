@@ -122,7 +122,8 @@ course_id number,
 start_date date,
 completion_date date,
 constraint user_course_id_pk primary key(user_course_id),
-constraint user_idd_uni unique(user_id),
+constraint user_idd_fk foreign key(user_id) references registration(user_id),
+constraint courses_idd_fk foreign key(course_id) references course(course_id),
 constraint users_id_unq unique(user_id,course_id)
 );
 create sequence user_course_id_seq start with 2020;
