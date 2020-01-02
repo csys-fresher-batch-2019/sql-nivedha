@@ -239,6 +239,7 @@ values
 Query:
 ```sql
 select * from schedule;
+select * from clientcmpy where client_id=(select client_id from schedule where job_requirement='java');
 drop table schedule;
 drop sequence interview_id_seq;
 drop sequence client_id_sequ;
