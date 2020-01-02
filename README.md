@@ -198,6 +198,10 @@ values
 Query:
 ```sql
 select * from clientcmpy;
+--Display the company name, contact number and contact person 
+select company_name,ph_no,contact_person from clientcmpy;
+--update the contact person in particular company
+update clientcmpy set contact_person='nivedha' where company_name='chainsys';
 drop table clientcmpy;
 drop sequence client_id_seq;
 ```
@@ -245,13 +249,22 @@ values
 Query:
 ```sql
 select * from schedule;
+
 --Display the client companies where the job requirement is 'java'
 select * from clientcmpy where client_id=(select client_id from schedule where job_requirement='java');
+
 --Display the company details where the interview date is 05-01-2020
 select * from clientcmpy where client_id=(select client_id from schedule where interview_date='05-01-2020');
---Display the user details how are selected in the job title 'software developer' and the job requirement is 'java'
+
+--Display the user details who are selected in the job title 'software developer' and the job requirement is 'java'
 select * from registration where user_id=(select user_id from intervieww where client_id=
 (select client_id from schedule where job_title='software developer' and job_requirement='java'));
+
+--Diplay the course ,fees details of the user who perform 'better' in interview
+select * from course where course_id=
+(select course_id from usercourse where user_id=
+(select user_id from intervieww where inter_perform='better'));
+
 drop table schedule;
 drop sequence interview_id_seq;
 drop sequence client_id_sequ;
