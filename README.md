@@ -45,14 +45,28 @@ values
 Query:
 ```sql
 select * from course;
+
 --Display all the courses with fees
 select course_name,course_fees from course;
+
 --Display course and fees in id=1005
 select course_name,course_fees from course where course_id=1005;
+
 --Display the course fees in ascending order
 select course_name,course_fees from course order by (course_fees)asc;
+
 --Display the course fees above or equal to 20000
 select course_name,course_fees from course where course_fees>=20000;
+
+--Display the course count
+select count(*) from course;
+
+--Display the minimum course fees
+select min(course_fees) from course;
+
+--Display the maximum course fees
+select max(course_fees) from course;
+
 drop table course;
 drop sequence course_id_seq;
 ```
@@ -100,10 +114,19 @@ values
 Query:
 ```sql
 select * from registration;
+
 --Display the count of female users in the registration table
 select count(*) from registration where gender='female';
+
 --Display the user details where the qualification is MCA
 select * from registration where qualification='MCA';
+
+--Display the user count
+select count(*) from registration;
+
+--Display the user name in ascending order
+select * from registration order by user_name asc;
+
 drop table registration;
 drop sequence user_id_seq;
 ```
@@ -198,10 +221,16 @@ values
 Query:
 ```sql
 select * from clientcmpy;
+
 --Display the company name, contact number and contact person 
 select company_name,ph_no,contact_person from clientcmpy;
+
 --update the contact person in particular company
 update clientcmpy set contact_person='nivedha' where company_name='chainsys';
+
+--Display the client companies count
+select count(*) from clientcmpy;
+
 drop table clientcmpy;
 drop sequence client_id_seq;
 ```
@@ -265,6 +294,9 @@ select * from course where course_id=
 (select course_id from usercourse where user_id=
 (select user_id from intervieww where inter_perform='better'));
 
+--Display the scheduled interview count
+select count(*) from schedule;
+
 drop table schedule;
 drop sequence interview_id_seq;
 drop sequence client_id_sequ;
@@ -316,15 +348,23 @@ values
 Query:
 ```sql
 select * from intervieww;
+
 --Display the user details where their interview performane is 'good'
 select user_id,user_name from registration where user_id=(select user_id from intervieww where inter_perform='good');
+
 --If the interview marks is greater than 5 the candidate status was updated into selected
 update intervieww set inter_status='selected' where marks>5;
+
 --Display the selected users in interview and interview performance is good
 select user_id,user_name,qualification from registration where user_id=
 (select user_id from intervieww where inter_perform='good' and inter_status='selected');
+
 --update the interview status based on the interview marks
 select user_id,client_id,INTERVIEW_PERFORMANCE(5)as interview_performance from intervieww where user_id=202;
+
+--Display the count of selected users in the interview
+select count(*) from intervieww where inter_status='selected';
+
 drop table intervieww;
 drop sequence sl_no_sqn;
 drop sequence clientt_id_sqn;
