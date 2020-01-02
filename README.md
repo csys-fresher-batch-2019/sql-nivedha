@@ -249,6 +249,9 @@ select * from schedule;
 select * from clientcmpy where client_id=(select client_id from schedule where job_requirement='java');
 --Display the company details where the interview date is 05-01-2020
 select * from clientcmpy where client_id=(select client_id from schedule where interview_date='05-01-2020');
+--Display the user details how are selected in the job title 'software developer' and the job requirement is 'java'
+select * from registration where user_id=(select user_id from intervieww where client_id=
+(select client_id from schedule where job_title='software developer' and job_requirement='java'));
 drop table schedule;
 drop sequence interview_id_seq;
 drop sequence client_id_sequ;
