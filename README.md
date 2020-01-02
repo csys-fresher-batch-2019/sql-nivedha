@@ -35,11 +35,11 @@ Insert Query:
 insert into course
 (course_id,course_name,course_duration,course_fees) 
 values 
-(course_id_seq.nextval,'java','6',50000);
+(course_id_seq.nextval,'java','6',20000);
 insert into course
 (course_id,course_name,course_duration,course_fees) 
 values 
-(course_id_seq.nextval,'.net','3',25000);
+(course_id_seq.nextval,'.net','3',10000);
 ```
 
 Query:
