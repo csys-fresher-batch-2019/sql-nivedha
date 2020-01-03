@@ -374,9 +374,6 @@ select user_id,user_name,qualification from registration where user_id=
 --Display the count of selected users in the interview
 select count(*) from intervieww where inter_status='selected';
 
---this function update the interview status based on the interview marks 
-select user_id,client_id,INTERVIEW_PERFORMANCE(5)as interview_performance from intervieww where user_id=202;
-
 drop table intervieww;
 drop sequence sl_no_sqn;
 drop sequence clientt_id_sqn;
@@ -398,4 +395,8 @@ end if;
   RETURN v_status;
 END INTERVIEW_PERFORMANCE;
 ```
-
+--this function update the interview status based on the interview marks 
+```sql
+select user_id,client_id,INTERVIEW_PERFORMANCE(5)as interview_performance from intervieww 
+where user_id=202;
+```
