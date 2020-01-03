@@ -2,17 +2,6 @@
 
 * http://trainingandplacementservice.in
 
-## MODULES
-
-MODULES:
-
-1.COURSE DETAILS
-2.USER REGISTRATION DETAILS
-3.USER COURSE DETAILS
-4.CLIENT COMPANY DETAILS
-5.INTERVIEW SCHEDULE DETAILS
-6.INTERVIEW PERFORMANCE DETAILS
-
 ## Features
 
 * user should be able to view all the courses available in the institution
