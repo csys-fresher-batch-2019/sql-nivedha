@@ -238,10 +238,10 @@ drop sequence client_id_seq;
 ### Feature 5: List the interview schedule details
 
 
-| interview_id | client_id | job_title          | job_requirement | interview_date | interview_time |
-|--------------|-----------|--------------------|-----------------|----------------|----------------|
-| 1            | 1111      | software developer | java            | 02-01-2020     | 10AM           |
-| 2            | 1113      | sql developer      | oracle          | 11-01-2020     | 11AM           |
+| Interview_id | Client_id | Job_Title          | Job_requirement | Created_date                   | Interview_date | Interview_time |
+|--------------|-----------|--------------------|-----------------|--------------------------------|----------------|----------------|
+| 1            | 1111      | software developer | java            | 02-01-20 05:02:50.271000000 PM | 05-01-20       | 10AM           |
+| 2            | 1112      | sql developer      | oracle          | 02-01-20 05:02:50.276000000 PM | 11-01-20       | 11AM           |
 
 
 ```sql
