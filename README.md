@@ -280,10 +280,12 @@ Query:
 select * from schedule;
 
 --Display the client companies where the job requirement is 'java'
-select * from clientcmpy where client_id=(select client_id from schedule where job_requirement='java');
+select * from clientcmpy where client_id=
+(select client_id from schedule where job_requirement='java');
 
 --Display the company details where the interview date is 05-01-2020
-select * from clientcmpy where client_id=(select client_id from schedule where interview_date='05-01-2020');
+select * from clientcmpy where client_id=
+(select client_id from schedule where interview_date='05-01-2020');
 
 --Display the user details who are selected in the job title 'software developer' and the job requirement is 'java'
 select * from registration where user_id=(select user_id from intervieww where client_id=
@@ -295,7 +297,9 @@ select * from course where course_id=
 (select user_id from intervieww where inter_perform='better'));
 
 --Display the company details with interview schedule using join query
-select c.client_id,c.company_name,c.contact_person,s.job_requirement,s.job_title,s.interview_date,s.interview_time from clientcmpy c left join schedule s on c.client_id=s.client_id;
+select c.client_id,c.company_name,c.contact_person,s.job_requirement,
+s.job_title,s.interview_date,s.interview_time from 
+clientcmpy c left join schedule s on c.client_id=s.client_id;
 
 --Display the scheduled interview count
 select count(*) from schedule;
@@ -353,10 +357,12 @@ Query:
 select * from intervieww;
 
 --Display the user details with interview details using join query
-select r.user_id,r.user_name,r.qualification,i.client_id,i.inter_perform,i.inter_status,i.marks from registration r inner join intervieww i on r.user_id=i.user_id;
+select r.user_id,r.user_name,r.qualification,i.client_id,i.inter_perform,
+i.inter_status,i.marks from registration r inner join intervieww i on r.user_id=i.user_id;
 
 --Display the user details where their interview performane is 'good'
-select user_id,user_name from registration where user_id=(select user_id from intervieww where inter_perform='good');
+select user_id,user_name from registration where user_id=
+(select user_id from intervieww where inter_perform='good');
 
 --If the interview marks is greater than 5 the candidate status was updated into selected
 update intervieww set inter_status='selected' where marks>5;
@@ -364,9 +370,6 @@ update intervieww set inter_status='selected' where marks>5;
 --Display the selected users in interview and interview performance is good
 select user_id,user_name,qualification from registration where user_id=
 (select user_id from intervieww where inter_perform='good' and inter_status='selected');
-
---update the interview status based on the interview marks
-select user_id,client_id,INTERVIEW_PERFORMANCE(5)as interview_performance from intervieww where user_id=202;
 
 --Display the count of selected users in the interview
 select count(*) from intervieww where inter_status='selected';
