@@ -46,10 +46,8 @@ Query:
 ```sql
 select * from course;
 
-Display all the courses with fees:
-```sql
+--Display all the courses with fees:
 select course_name,course_fees from course;
-```
 
 --Display course and fees in id=1005
 select course_name,course_fees from course where course_id=1005;
