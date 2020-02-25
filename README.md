@@ -9,10 +9,10 @@
 ### Feature 1: List all the courses
 
 
-| course_id | course_name | course_duration | course_fees |
-|-----------|-------------|-----------------|-------------|
-| 1001      | java        | 6               | 20000       |
-| 1005      | .net        | 3               | 10000       |
+| course_id | course_name | course_duration | course_fees |course_image|course_pdf   |
+|-----------|-------------|-----------------|-------------|------------|-------------|
+| 1001      | java        | 6               | 20000       |java.png    |java.pdf     |
+| 1005      | .net        | 3               | 10000       |net.png     |net.pdf      |
 
 
 ```sql
@@ -136,10 +136,10 @@ drop sequence user_id_seq;
 ### Feature 3: List all the user course details
 
 
-| user_course_id | user_id | course_id | start_date | completion_date |
-|----------------|---------|-----------|------------|-----------------|
-| 2020           | 201     | 1001      | 01-01-2020 | 31-03-2020      |
-| 2021           | 203     | 1005      | 05-03-2020 | 05-06-2020      |
+| user_course_id | user_id | course_id | start_date | completion_date | total_amount|
+|----------------|---------|-----------|------------|-----------------|--------------
+| 2020           | 201     | 1001      | 01-01-2020 | 31-03-2020      |20000        |
+| 2021           | 203     | 1005      | 05-03-2020 | 05-06-2020      |15000        |
 
 
 ```sql
@@ -266,11 +266,11 @@ Insert Query:
 insert into schedule
 (interview_id,client_id,job_title,job_requirement,interview_date,interview_time)
 values
-(interview_id_seq.nextval,client_id_sequ.nextval,'software developer','java',to_date('05-01-2020','dd-mm-yyyy'),'10AM');
+(interview_id_seq.nextval,1111,'software developer','java',to_date('05-01-2020','dd-mm-yyyy'),'10AM');
 insert into schedule
 (interview_id,client_id,job_title,job_requirement,interview_date,interview_time)
 values
-(interview_id_seq.nextval,client_id_sequ.nextval,'sql developer','oracle',to_date('11-01-2020','dd-mm-yyyy'),'11AM');
+(interview_id_seq.nextval,1112,'sql developer','oracle',to_date('11-01-2020','dd-mm-yyyy'),'11AM');
 ```
 
 Query:
@@ -339,11 +339,11 @@ Insert Query:
 insert into intervieww
 (sl_no,client_id,user_id,inter_status,marks)
 values
-(sl_no_sqn.nextval,clientt_id_sqn.nextval,user_id_sqn.nextval,'selected',95);
+(sl_no_sqn.nextval,1111,201,'selected',95);
 insert into intervieww
 (sl_no,client_id,user_id,inter_perform,inter_status,marks)
 values
-(sl_no_sqn.nextval,clientt_id_sqn.nextval,user_id_sqn.nextval,'rejected',60);
+(sl_no_sqn.nextval,1113,203,'rejected',60);
 ```
 
 Query:
