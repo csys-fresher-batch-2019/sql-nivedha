@@ -373,6 +373,12 @@ drop sequence sl_no_sqn;
 drop sequence clientt_id_sqn;
 drop sequence user_id_sqn;
 ```
+
+| Min_marks | Max_marks | Status   |
+|-----------|-----------|----------|
+| 1         | 90        | rejected |
+| 91        | 100       | selected |
+
 ```sql
 create table grade
 (min_marks number not null,
@@ -386,7 +392,40 @@ insert into grade (min_marks,max_marks,status)values(80,100,'selected');
 ```sql
 select * from grade;
 update intervieww set inter_status=(select g.status from grade g where marks between g.min_marks and g.max_marks);
+
 ```
 
+| Trainer_id | Trainer_name | Trainer_Qualification | Trainer_specialist | Trainer_Experience | Email_id               | Contact_Number |
+|------------|--------------|-----------------------|--------------------|--------------------|------------------------|----------------|
+| 500        | nareshkumar  | BE-CS                 | java               | 10                 | nareshkumarh@gmail.com | 9878454785     |
+| 501        | dineshkumar  | BE-ECE                | sap                | 5                  | dineshkumarh@gmail.com | 9745765785     |
 
+```sql
+create table trainer
+(
+trainer_id number,
+trainer_name varchar2(100) not null,
+trainer_qualfication varchar2(50) not null,
+trainer_specialist varchar2(100) not null,
+trainer_experience number not null,
+email_id varchar2(100) not null,
+contact_number number(10) not null,
+constraint trainer_id_pk primary key(trainer_id),
+constraint email_id_uniq unique(email_id)
+);
+create sequence trainer_id_sqn start with 500;
+```
+```sql
+insert into trainer
+(trainer_id,trainer_name,trainer_qualfication,trainer_specialist,trainer_experience,email_id,contact_number)
+values
+(trainer_id_sqn.nextval,'nareshkumar','BE-CS','java',10,'nareshkumarh@gmail.com',9878454785);
+insert into trainer
+(trainer_id,trainer_name,trainer_qualfication,trainer_specialist,trainer_experience,email_id,contact_number)
+values
+(trainer_id_sqn.nextval,'dineshkumar','BE-ECE','sap',5,'dineshkumarh@gmail.com',9745765785);
+```
+```sql
+select * from trainer;
+```
 
