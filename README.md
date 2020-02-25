@@ -373,5 +373,20 @@ drop sequence sl_no_sqn;
 drop sequence clientt_id_sqn;
 drop sequence user_id_sqn;
 ```
+```sql
+create table grade
+(min_marks number not null,
+max_marks number not null,
+status varchar2(50)
+constraint status_ck check (status in('selected','rejected')));
+```
+```sql
+insert into grade (min_marks,max_marks,status)values(80,100,'selected');
+```
+```sql
+select * from grade;
+update intervieww set inter_status=(select g.status from grade g where marks between g.min_marks and g.max_marks);
+```
+
 
 
