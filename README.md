@@ -22,6 +22,8 @@ course_id number,
 course_name varchar2(100) not null,
 course_duration number not null,
 course_fees number not null,
+course_pdf varchar2(100),
+course_image varchar2(100),
 constraint course_id_pk primary key(course_id),
 constraint course_name_uq unique(course_name),
 constraint course_duration_ck check(course_duration in(3,6)),
@@ -33,13 +35,13 @@ create sequence course_id_seq start with 1001 increment by 4;
 Insert Query:
 ```sql
 insert into course
-(course_id,course_name,course_duration,course_fees) 
+(course_id,course_name,course_duration,course_fees,course_pdf,course_image) 
 values 
-(course_id_seq.nextval,'java','6',20000);
+(course_id_seq.nextval,'java','6',20000,'java.pdf','java.png');
 insert into course
-(course_id,course_name,course_duration,course_fees) 
+(course_id,course_name,course_duration,course_fees,course_pdf,course_image) 
 values 
-(course_id_seq.nextval,'.net','3',10000);
+(course_id_seq.nextval,'.net','3',10000,'net.pdf','net.png');
 ```
 
 Query:
@@ -148,28 +150,27 @@ user_id number,
 course_id number,
 start_date date,
 completion_date date,
+total_amount number,
 constraint user_course_id_pk primary key(user_course_id),
 constraint user_idd_fk foreign key(user_id) references registration(user_id),
 constraint courses_idd_fk foreign key(course_id) references course(course_id),
 constraint users_id_unq unique(user_id,course_id)
 );
 create sequence user_course_id_seq start with 2020;
-create sequence user_id_sequ start with 201 increment by 1;
-create sequence course_id_seqq start with 1001 increment by 4;
 ```
 
 Insert Query:
 ```sql
 insert into usercourse
-(user_course_id,user_id,course_id,start_date,completion_date)
+(user_course_id,user_id,course_id,start_date,completion_date,total_amount)
 values 
 (user_course_id_seq.nextval,user_id_sequ.nextval,course_id_seqq.nextval,
-to_date('01-01-2020','dd-mm-yyyy'),to_date('31-03-2020','dd-mm-yyyy'));
+to_date('01-01-2020','dd-mm-yyyy'),to_date('31-03-2020','dd-mm-yyyy'),20000);
 insert into usercourse
-(user_course_id,user_id,course_id,start_date,completion_date)
+(user_course_id,user_id,course_id,start_date,completion_date,total_amount)
 values 
 (user_course_id_seq.nextval,user_id_sequ.nextval,course_id_seqq.nextval,
-to_date('05-03-2020','dd-mm-yyyy'),to_date('05-06-2020','dd-mm-yyyy'));
+to_date('05-03-2020','dd-mm-yyyy'),to_date('05-06-2020','dd-mm-yyyy'),15000);
 ```
 
 Query:
@@ -200,7 +201,6 @@ email_id varchar2(40) not null,
 constraint client_id_pk primary key(client_id),
 constraint company_name_uq unique(company_name),
 constraint company_type_ck check(company_type in('software')),
-constraint ph_no_ck check(length(To_char(ph_no))=10),
 constraint emaill_id_uq unique(email_id)
 );
 create sequence client_id_seq start with 1111 increment by 1;
@@ -251,16 +251,14 @@ interview_id number,
 client_id number,
 job_title varchar2(100) not null,
 job_requirement varchar2(100) not null,
-created_date timestamp default current_timestamp,
+created_date date,
 interview_date date not null,
 interview_time varchar2(50) not null,
 constraint interview_id_pk primary key(interview_id),
-constraint client_id_uni unique(client_id),
 constraint client_id_fkk foreign key(client_id) references clientcmpy(client_id),
-constraint interview_date_ck check (trunc(created_date) <= interview_date )
+constraint inter_date_ch check  (interview_date>=created_date)
 );
 create sequence interview_id_seq start with 1;
-create sequence client_id_sequ start with 1111 increment by 1;
 ```
 
 Insert Query:
@@ -312,10 +310,10 @@ drop sequence client_id_sequ;
 ### Feature 6: List the interview performance details
 
 
-| sl_no | client_id | user_id | interview_performance | interview_status | marks | 
-|-------|-----------|---------|-----------------------|------------------|-------|
-|  1    | 1111      | 201     | good                  | selected         |  9    | 
-|  2    | 1113      | 203     | better                | waiting          |  7    | 
+| sl_no | client_id | user_id | interview_status | marks  | 
+|-------|-----------|---------|------------------|------- |
+|  1    | 1111      | 201     | selected         |  95    | 
+|  2    | 1113      | 203     | rejected         |  60    | 
 
 
 ```sql
@@ -324,32 +322,28 @@ create table intervieww
 sl_no number,
 client_id number not null,
 user_id number not null,
-inter_perform varchar2(100) not null,
-inter_status varchar(50) not null,
-marks number not null,
+inter_status varchar(50),
+marks number,
 constraint serial_noo_pk primary key(sl_no),
 constraint user_id_uniq unique(client_id,user_id),
 constraint client_id_ffk foreign key(client_id) references clientcmpy(client_id),
 constraint user_id_ffk foreign key(user_id) references registration(user_id),
-constraint interv_perform_ck check (inter_perform in('good','better','bad')),
-constraint interv_status_ck check (inter_status in('selected','waiting','rejected'))
+constraint interv_status_ck check (inter_status in('selected','rejected'))
 );
 create sequence sl_no_sqn start with 1;
-create sequence clientt_id_sqn start with 1111 increment by 1;                          
-create sequence user_id_sqn start with 201 increment by 1;
 
 ```
 
 Insert Query:
 ```sql
 insert into intervieww
-(sl_no,client_id,user_id,inter_perform,inter_status,marks)
+(sl_no,client_id,user_id,inter_status,marks)
 values
-(sl_no_sqn.nextval,clientt_id_sqn.nextval,user_id_sqn.nextval,'good','selected',9);
+(sl_no_sqn.nextval,clientt_id_sqn.nextval,user_id_sqn.nextval,'selected',95);
 insert into intervieww
 (sl_no,client_id,user_id,inter_perform,inter_status,marks)
 values
-(sl_no_sqn.nextval,clientt_id_sqn.nextval,user_id_sqn.nextval,'better','waiting',6);
+(sl_no_sqn.nextval,clientt_id_sqn.nextval,user_id_sqn.nextval,'rejected',60);
 ```
 
 Query:
@@ -379,24 +373,5 @@ drop sequence sl_no_sqn;
 drop sequence clientt_id_sqn;
 drop sequence user_id_sqn;
 ```
-Function:
-```sql
-CREATE OR REPLACE FUNCTION INTERVIEW_PERFORMANCE(marks number)
-RETURN VARCHAR2 AS 
-v_status VARCHAR2(10);
-BEGIN
-if marks < 5 then
-v_status := 'FAILED';
-elsif marks < 8 then
-v_status := 'WAITING';
-else
-v_status := 'SELECTED';
-end if;
-  RETURN v_status;
-END INTERVIEW_PERFORMANCE;
-```
---this function update the interview status based on the interview marks 
-```sql
-select user_id,client_id,INTERVIEW_PERFORMANCE(5)as interview_performance from intervieww 
-where user_id=202;
-```
+
+
